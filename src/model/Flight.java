@@ -1,9 +1,7 @@
 package model;
 
-import java.time.LocalDate;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 
 public class Flight {
     private String placeOfDeparture;
@@ -13,13 +11,13 @@ public class Flight {
     private Calendar departureDate;
     private Calendar returnDate;
     private int flightLength;
-    private int numberOfPassengers;
+    private int freeSeats;
     private double price;
 
     public Flight() {
     }
 
-    public Flight(String placeOfDeparture, String symbolOfDeparture, String placeOfArrival, String symbolOfArrival, Calendar departureDate, Calendar returnDate, int flightLength, int numberOfPassengers, double price) {
+    public Flight(String placeOfDeparture, String symbolOfDeparture, String placeOfArrival, String symbolOfArrival, Calendar departureDate, Calendar returnDate, int flightLength, int freeSeats, double price) {
         this.placeOfDeparture = placeOfDeparture;
         this.symbolOfDeparture = symbolOfDeparture;
         this.placeOfArrival = placeOfArrival;
@@ -27,7 +25,7 @@ public class Flight {
         this.departureDate = departureDate;
         this.returnDate = returnDate;
         this.flightLength = flightLength;
-        this.numberOfPassengers = numberOfPassengers;
+        this.freeSeats = freeSeats;
         this.price = price;
     }
 
@@ -87,12 +85,12 @@ public class Flight {
         this.flightLength = flightLength;
     }
 
-    public int getNumberOfPassengers() {
-        return numberOfPassengers;
+    public int getFreeSeats() {
+        return freeSeats;
     }
 
-    public void setNumberOfPassengers(int numberOfPassengers) {
-        this.numberOfPassengers = numberOfPassengers;
+    public void setFreeSeats(int freeSeats) {
+        this.freeSeats = freeSeats;
     }
 
     public double getPrice() {
@@ -105,16 +103,9 @@ public class Flight {
 
     @Override
     public String toString() {
-        return "Flight{" +
-                "placeOfDeparture='" + placeOfDeparture + '\'' +
-                ", symbolOfDeparture='" + symbolOfDeparture + '\'' +
-                ", placeOfArrival='" + placeOfArrival + '\'' +
-                ", symbolOfArrival='" + symbolOfArrival + '\'' +
-                ", departureDate=" + departureDate +
-                ", returnDate=" + returnDate +
-                ", flightLength=" + flightLength +
-                ", numberOfPassengers=" + numberOfPassengers +
-                ", price=" + price +
-                '}';
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+        return  placeOfDeparture + " -> " + placeOfArrival +
+                " Data wylotu: " + dateFormat.format(departureDate.getTime()) + " Data powrotu: " + dateFormat.format(returnDate.getTime()) +
+                " Długość lotu: " + flightLength + "h Wolne miejsca: " + freeSeats;
     }
 }
